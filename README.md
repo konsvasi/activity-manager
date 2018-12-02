@@ -1,1 +1,1 @@
-This is an app that let's groups of friends to plan and manage their activities.
+This is an app that lets groups of friends to plan and manage their activities.
