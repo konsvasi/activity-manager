@@ -1,27 +1,14 @@
 import React, { Component } from "react";
-import Particles from "react-particles-js";
 import SignInRegister from "./Components/SignInRegister";
+import Background from "./Components/Background";
 import "bulma/css/bulma.css";
-import "./App.css";
-
-const particlesConfig = {
-  particles: {
-    number: {
-      value: 30,
-      density: {
-        enable: true,
-        value_area: 800
-      }
-    }
-  }
-};
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Particles className="particles" params={particlesConfig} />
+      <div>
         <section className="section">
+          <Background />
           <div className="container">
             <div className="columns">
               <div className="column" />
