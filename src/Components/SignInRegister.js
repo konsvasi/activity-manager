@@ -13,6 +13,7 @@ class SignInRegister extends Component {
 
   toggleCardFields = () => {
     this.setState({ isMember: !this.state.isMember });
+    console.log("isMember:", this.state.isMember);
   };
 
   render() {
