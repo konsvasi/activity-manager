@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import ActivityModal from "./ActivityModal";
+import Navbar from "./Navbar";
+import ActivityList from "./ActivityList";
+import MainPanel from "./MainPanel";
+
 import "bulma/css/bulma.css";
 
 class Dashboard extends Component {
@@ -19,17 +23,26 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <section className="section">
-        <div className="container">
-          <button className="button is-primary" onClick={this.toggleModal}>
-            Add activity
-          </button>
-          <ActivityModal
-            closeModal={this.toggleModal}
-            modalState={this.state.modalState}
-          />
+      <div>
+        <Navbar />
+        <div className="columns">
+          <div className="column is-one-quarter">
+            <section className="section">
+              <ActivityList />
+              <ActivityModal
+                closeModal={this.toggleModal}
+                modalState={this.state.modalState}
+              />
+              <button className="button is-primary" onClick={this.toggleModal}>
+                Add activity
+              </button>
+            </section>
+          </div>
+          <div className="column">
+            <MainPanel />
+          </div>
         </div>
-      </section>
+      </div>
     );
   }
 }
