@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import NameField from "./NameField";
 import Datepicker from "./Datepicker";
 
 class ActivityModal extends Component {
@@ -9,7 +10,9 @@ class ActivityModal extends Component {
         activityName: "",
         activityDate: "",
         activityFriends: ""
-      }
+      },
+      nameFieldIsEmpty: false,
+      dateFieldIsEmpty: false
     };
   }
 
@@ -33,18 +36,47 @@ class ActivityModal extends Component {
     this.setState(prev => {
       return {
         activity: {
-          activityName: this.state.activity.activityName,
+          activityName: prev.activityName,
           activityDate: newDate,
-          activityFriends: this.state.activity.activityFriends
+          activityFriends: prev.activityFriends
         }
       };
     });
   };
 
+  // Clears the warning when input field has a value
+  clearWarning = ev => {
+    const inputValue = ev.target.value;
+    if (inputValue !== "") {
+      this.setState(prev => {
+        return { nameFieldIsEmpty: false };
+      });
+    } else {
+      this.setState(prev => {
+        return { nameFieldIsEmpty: true };
+      });
+    }
+  };
+
+  // Does simple checks of the given values of the input fields
+  // before actually calling the saveActivity function
   prepareSaveActivity = () => {
-    if (this.state.activityName !== "" && this.state.activityDate !== "") {
+    console.log(
+      "this.state.activityName:",
+      this.state.activityName,
+      "date:",
+      this.state.activityDate
+    );
+    if (
+      this.state.activity.activityName !== "" &&
+      this.state.activity.activityDate !== ""
+    ) {
       this.props.saveActivity(this.state.activity);
       this.props.closeModal();
+    } else if (this.state.activity.activityName === "") {
+      this.setState(prev => {
+        return { nameFieldIsEmpty: true };
+      });
     }
   };
 
@@ -65,11 +97,10 @@ class ActivityModal extends Component {
               <div className="field">
                 <label className="label">Give a name to your activity</label>
                 <div className="control">
-                  <input
-                    className="input"
-                    type="text"
-                    placeholder="Activity name"
-                    onBlur={this.handleNameChange}
+                  <NameField
+                    isEmpty={this.state.nameFieldIsEmpty}
+                    handleNameChange={this.handleNameChange}
+                    clearWarning={this.clearWarning}
                   />
                 </div>
               </div>

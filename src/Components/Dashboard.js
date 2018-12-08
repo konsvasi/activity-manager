@@ -11,11 +11,6 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       modalState: false,
-      newActivity: {
-        name: "",
-        date: "",
-        friends: ""
-      },
       activities: []
     };
   }
