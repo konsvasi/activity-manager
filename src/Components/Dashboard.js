@@ -28,17 +28,10 @@ class Dashboard extends Component {
   };
 
   saveActivity = activity => {
-    // console.log('save to db and update list', newActivity);
     const createdActivity = activity;
-    // this.setState((prev, props) => {
-    //   console.log('newState:', createdActivity);
-    //   return { newActivity: createdActivity}
-    // })
-    const activities = [...this.state.activities, createdActivity];
-    this.setState(prevState => {
-      return { activities: activities };
-    });
-    console.log("new:", this.state.newActivity);
+    this.setState(prevState => ({
+      activities: [...prevState.activities, createdActivity]
+    }));
   };
 
   render() {

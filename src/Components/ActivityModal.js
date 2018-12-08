@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Datepicker from "./Datepicker";
 
 class ActivityModal extends Component {
   constructor(props) {
@@ -27,8 +28,21 @@ class ActivityModal extends Component {
     });
   };
 
+  handleDateChange = ev => {
+    const newDate = ev.target.value;
+    this.setState(prev => {
+      return {
+        activity: {
+          activityName: this.state.activity.activityName,
+          activityDate: newDate,
+          activityFriends: this.state.activity.activityFriends
+        }
+      };
+    });
+  };
+
   prepareSaveActivity = () => {
-    if (this.state.activityName !== "") {
+    if (this.state.activityName !== "" && this.state.activityDate !== "") {
       this.props.saveActivity(this.state.activity);
       this.props.closeModal();
     }
@@ -62,11 +76,7 @@ class ActivityModal extends Component {
               <div className="field">
                 <label className="label">When?</label>
                 <div className="control">
-                  <input
-                    className="input"
-                    type="text"
-                    placeholder="Date placeholder"
-                  />
+                  <Datepicker onChange={this.handleDateChange} />
                 </div>
               </div>
               <div className="field">
