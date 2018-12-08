@@ -10,7 +10,13 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalState: false
+      modalState: false,
+      newActivity: {
+        name: "",
+        date: "",
+        friends: ""
+      },
+      activities: []
     };
   }
 
@@ -21,6 +27,20 @@ class Dashboard extends Component {
     });
   };
 
+  saveActivity = activity => {
+    // console.log('save to db and update list', newActivity);
+    const createdActivity = activity;
+    // this.setState((prev, props) => {
+    //   console.log('newState:', createdActivity);
+    //   return { newActivity: createdActivity}
+    // })
+    const activities = [...this.state.activities, createdActivity];
+    this.setState(prevState => {
+      return { activities: activities };
+    });
+    console.log("new:", this.state.newActivity);
+  };
+
   render() {
     return (
       <div>
@@ -28,8 +48,9 @@ class Dashboard extends Component {
         <div className="columns">
           <div className="column is-one-quarter">
             <section className="section">
-              <ActivityList />
+              <ActivityList activities={this.state.activities} />
               <ActivityModal
+                saveActivity={this.saveActivity}
                 closeModal={this.toggleModal}
                 modalState={this.state.modalState}
               />
