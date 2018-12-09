@@ -6,76 +6,68 @@ class ActivityModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activity: {
-        activityName: "",
-        activityDate: "",
-        activityFriends: ""
-      },
       nameFieldIsEmpty: false,
       dateFieldIsEmpty: false
     };
   }
 
+  activity = {
+    activityName: "",
+    activityDate: "",
+    activityFriends: ""
+  };
+
   handleNameChange = ev => {
     ev.persist();
-
-    this.setState((prev, props) => {
-      const newName = ev.target.value;
-      return {
-        activity: {
-          activityName: newName,
-          activityDate: this.state.activity.activityDate,
-          activityFriends: this.state.activity.activityFriends
-        }
-      };
-    });
+    this.activity.activityName = ev.target.value;
   };
 
   handleDateChange = ev => {
-    const newDate = ev.target.value;
-    this.setState(prev => {
-      return {
-        activity: {
-          activityName: prev.activityName,
-          activityDate: newDate,
-          activityFriends: prev.activityFriends
-        }
-      };
-    });
+    this.activity.activityDate = ev.target.value;
   };
 
   // Clears the warning when input field has a value
   clearWarning = ev => {
+    const target = ev.target;
     const inputValue = ev.target.value;
     if (inputValue !== "") {
-      this.setState(prev => {
-        return { nameFieldIsEmpty: false };
-      });
+      if (target.type == "date") {
+        this.setState(prev => {
+          return { dateFieldIsEmpty: false };
+        });
+      } else {
+        this.setState(prev => {
+          return { nameFieldIsEmpty: false };
+        });
+      }
     } else {
-      this.setState(prev => {
-        return { nameFieldIsEmpty: true };
-      });
+      if (target.type === "date") {
+        this.setState(prev => {
+          return { dateFieldIsEmpty: true };
+        });
+      } else {
+        this.setState(prev => {
+          return { nameFieldIsEmpty: true };
+        });
+      }
     }
+  };
+
+  resetActivityValues = () => {
+    this.activity = { activityName: "", activityDate: "", activityFriends: "" };
   };
 
   // Does simple checks of the given values of the input fields
   // before actually calling the saveActivity function
   prepareSaveActivity = () => {
-    console.log(
-      "this.state.activityName:",
-      this.state.activityName,
-      "date:",
-      this.state.activityDate
-    );
-    if (
-      this.state.activity.activityName !== "" &&
-      this.state.activity.activityDate !== ""
-    ) {
-      this.props.saveActivity(this.state.activity);
+    const { activityName, activityDate } = this.activity;
+    if (activityName !== "" && activityDate !== "") {
+      this.props.saveActivity(this.activity);
+      this.resetActivityValues();
       this.props.closeModal();
-    } else if (this.state.activity.activityName === "") {
+    } else if (activityName === "" && activityDate === "") {
       this.setState(prev => {
-        return { nameFieldIsEmpty: true };
+        return { nameFieldIsEmpty: true, dateFieldIsEmpty: true };
       });
     }
   };
@@ -107,7 +99,11 @@ class ActivityModal extends Component {
               <div className="field">
                 <label className="label">When?</label>
                 <div className="control">
-                  <Datepicker onChange={this.handleDateChange} />
+                  <Datepicker
+                    isEmpty={this.state.dateFieldIsEmpty}
+                    onChange={this.handleDateChange}
+                    clearWarning={this.clearWarning}
+                  />
                 </div>
               </div>
               <div className="field">
