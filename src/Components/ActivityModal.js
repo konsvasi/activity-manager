@@ -12,6 +12,7 @@ class ActivityModal extends Component {
   }
 
   activity = {
+    activityId: "",
     activityName: "",
     activityDate: "",
     activityFriends: ""
@@ -23,7 +24,8 @@ class ActivityModal extends Component {
   };
 
   handleDateChange = ev => {
-    this.activity.activityDate = ev.target.value;
+    this.activity.activityDate = new Date(ev.target.value);
+    console.log("date:", this.activity.activityDate);
   };
 
   // Clears the warning when input field has a value
@@ -31,7 +33,7 @@ class ActivityModal extends Component {
     const target = ev.target;
     const inputValue = ev.target.value;
     if (inputValue !== "") {
-      if (target.type == "date") {
+      if (target.type === "date") {
         this.setState(prev => {
           return { dateFieldIsEmpty: false };
         });
@@ -62,6 +64,7 @@ class ActivityModal extends Component {
   prepareSaveActivity = () => {
     const { activityName, activityDate } = this.activity;
     if (activityName !== "" && activityDate !== "") {
+      this.activity.activityId = activityName;
       this.props.saveActivity(this.activity);
       this.resetActivityValues();
       this.props.closeModal();

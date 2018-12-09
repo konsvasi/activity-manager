@@ -11,7 +11,8 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       modalState: false,
-      activities: []
+      activities: [],
+      activeSession: {}
     };
   }
 
@@ -29,6 +30,20 @@ class Dashboard extends Component {
     }));
   };
 
+  // Gets the id of the clicked activity
+  // and set the state in the MainPanel component
+  // to show the detailed view of the activity
+  getActivityId = id => {
+    console.log("id:", id);
+    this.setState(prev => {
+      const activity = prev.activities.find(element => {
+        return element.activityId === id;
+      });
+      console.log("activity:", activity);
+      return { activeSession: activity };
+    });
+  };
+
   render() {
     return (
       <div>
@@ -36,7 +51,10 @@ class Dashboard extends Component {
         <div className="columns">
           <div className="column is-one-quarter">
             <section className="section">
-              <ActivityList activities={this.state.activities} />
+              <ActivityList
+                getActivityId={this.getActivityId}
+                activities={this.state.activities}
+              />
               <ActivityModal
                 saveActivity={this.saveActivity}
                 closeModal={this.toggleModal}
@@ -48,7 +66,7 @@ class Dashboard extends Component {
             </section>
           </div>
           <div className="column">
-            <MainPanel />
+            <MainPanel activeSession={this.state.activeSession} />
           </div>
         </div>
       </div>

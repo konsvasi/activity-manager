@@ -3,10 +3,14 @@ import "bulma/css/bulma.css";
 
 const ActivityList = props => {
   const activities = props.activities;
-  console.log("props.activities:", activities);
+
+  const getActivityId = ev => {
+    props.getActivityId(ev.target.id);
+  };
+
   const listOfActivities = activities.map((activity, index) => (
-    <li key={index}>
-      <a>{activity.activityName}</a>
+    <li onClick={getActivityId} key={index}>
+      <a id={activity.activityName}>{activity.activityName}</a>
     </li>
   ));
 
