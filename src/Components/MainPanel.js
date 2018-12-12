@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Searchbar from "./Searchbar";
 
 import "bulma/css/bulma.css";
 
@@ -25,6 +26,10 @@ class MainPanel extends Component {
     return true;
   };
 
+  findMovie = ev => {
+    console.log("searching", ev.target.value);
+  };
+
   DetailPanel = props => {
     const { activityName, activityDate } = props.activeSession;
     if (this.isEmptyObj(props.activeSession)) {
@@ -44,6 +49,7 @@ class MainPanel extends Component {
         <p className="subtitle">{activityDate.toLocaleString()}</p>
         <div className="content">
           <p>Insert activity details</p>
+          <Searchbar />
         </div>
       </div>
     );

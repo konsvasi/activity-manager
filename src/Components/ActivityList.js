@@ -14,13 +14,12 @@ const ActivityList = props => {
     </li>
   ));
 
-  console.log("list:", listOfActivities);
   if (listOfActivities.length === 0) {
     return (
       <aside className="menu">
         <p className="menu-label">Activities</p>
         <p>
-          Nothing to show{" "}
+          Nothing to show
           <span role="img" aria-label="emoji">
             😧
           </span>

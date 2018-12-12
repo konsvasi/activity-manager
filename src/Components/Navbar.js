@@ -8,11 +8,6 @@ const Navbar = () => {
         <div className="navbar-brand">
           <h2 className="navbar-item title">Aragmattr</h2>
         </div>
-        <div className="navbar-start">
-          <div className="navbar-item">
-            <Searchbar />
-          </div>
-        </div>
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
