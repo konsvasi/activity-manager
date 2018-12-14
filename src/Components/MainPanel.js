@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import FilmSearchBar from "./FilmSearchBar";
 import MovieVote from "./MovieVote";
 import DetailPanel from "./DetailPanel";
-import "bulma/css/bulma.css";
 
 class MainPanel extends Component {
   constructor(props) {
@@ -48,6 +47,7 @@ class MainPanel extends Component {
       <section className="section">
         <p className="title">{activityName}</p>
         <p className="subtitle">{activityDate.toLocaleString()}</p>
+
         <div className="content">
           <p>Insert activity details</p>
           <FilmSearchBar />

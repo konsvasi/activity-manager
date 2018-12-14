@@ -1,0 +1,13 @@
+.field_style {
+  margin-bottom: 0px !important;
+}
+
+.result {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.dropdown-content {
+  max-height: 13em;
+  overflow: auto;
+}

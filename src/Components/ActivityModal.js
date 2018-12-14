@@ -25,7 +25,6 @@ class ActivityModal extends Component {
 
   handleDateChange = ev => {
     this.activity.activityDate = new Date(ev.target.value);
-    console.log("date:", this.activity.activityDate);
   };
 
   // Clears the warning when input field has a value

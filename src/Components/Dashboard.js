@@ -11,20 +11,8 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       modalState: false,
-      activities: [
-        {
-          activityId: "1",
-          activityName: "Test",
-          activityDate: "22/12/2018",
-          activityFriends: "no"
-        }
-      ],
-      activeSession: {
-        activityId: "1",
-        activityName: "Test",
-        activityDate: "22/12/2018",
-        activityFriends: "no"
-      }
+      activities: [],
+      activeSession: {}
     };
   }
 
@@ -38,7 +26,8 @@ class Dashboard extends Component {
   saveActivity = activity => {
     const createdActivity = activity;
     this.setState(prevState => ({
-      activities: [...prevState.activities, createdActivity]
+      activities: [...prevState.activities, createdActivity],
+      activeSession: createdActivity
     }));
   };
 
@@ -46,7 +35,6 @@ class Dashboard extends Component {
   // and set the state in the MainPanel component
   // to show the detailed view of the activity
   getActivityId = id => {
-    console.log("id:", id);
     this.setState(prev => {
       const activity = prev.activities.find(element => {
         return element.activityId === id;
