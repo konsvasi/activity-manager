@@ -62,7 +62,6 @@ class Searchbar extends Component {
               </div>
             </article>
           </a>
-          <hr className="dropdown-divider" />
         </div>
       );
     });

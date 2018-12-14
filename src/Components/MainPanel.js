@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Searchbar from "./Searchbar";
-
+import FilmSearchBar from "./FilmSearchBar";
+import MovieVote from "./MovieVote";
+import DetailPanel from "./DetailPanel";
 import "bulma/css/bulma.css";
 
 class MainPanel extends Component {
@@ -44,23 +45,25 @@ class MainPanel extends Component {
     }
 
     return (
-      <div>
+      <section className="section">
         <p className="title">{activityName}</p>
         <p className="subtitle">{activityDate.toLocaleString()}</p>
         <div className="content">
           <p>Insert activity details</p>
-          <Searchbar />
+          <FilmSearchBar />
         </div>
-      </div>
+        <MovieVote />
+      </section>
     );
   };
 
   render() {
+    console.log("this.props.activeSession:", this.props.activeSession);
     return (
       <div className="tile-is-ancestor">
         <div className="tile">
-          <article className="tile is-child notification is-primary">
-            <this.DetailPanel activeSession={this.props.activeSession} />
+          <article className="tile is-child notification is-primary is-bold">
+            <DetailPanel activeSession={this.props.activeSession} />
           </article>
         </div>
       </div>

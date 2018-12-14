@@ -11,8 +11,20 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       modalState: false,
-      activities: [],
-      activeSession: {}
+      activities: [
+        {
+          activityId: "1",
+          activityName: "Test",
+          activityDate: "22/12/2018",
+          activityFriends: "no"
+        }
+      ],
+      activeSession: {
+        activityId: "1",
+        activityName: "Test",
+        activityDate: "22/12/2018",
+        activityFriends: "no"
+      }
     };
   }
 
@@ -49,7 +61,7 @@ class Dashboard extends Component {
       <div>
         <Navbar />
         <div className="columns">
-          <div className="column is-one-quarter">
+          <div className="column is-3">
             <section className="section">
               <ActivityList
                 getActivityId={this.getActivityId}
@@ -65,7 +77,7 @@ class Dashboard extends Component {
               </button>
             </section>
           </div>
-          <div className="column">
+          <div className="column is-9">
             <MainPanel activeSession={this.state.activeSession} />
           </div>
         </div>
