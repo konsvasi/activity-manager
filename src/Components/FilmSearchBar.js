@@ -18,16 +18,24 @@ const searchApi = searchTerm =>
   );
 
 const searchApiDebounced = AwesomeDebouncePromise(searchApi, 500);
-const addMovie = ev => {
-  console.log("clicked on movie:", ev.target.id);
-};
 
 let movies = [];
 
 const DropDown = props => {
+  const addMovie = id => {
+    props.addMovie(movies[id]);
+  };
+
   const listOfResults = props.results.map((movie, index) => (
-    <div className="result" key={index}>
-      <a className="dropdown-item" id={index} onClick={addMovie}>
+    <div
+      className="result"
+      key={index}
+      id={index}
+      onClick={() => {
+        addMovie(index);
+      }}
+    >
+      <a className="dropdown-item" id={index}>
         <article className="media">
           <figure className="media-left">
             <p className="image is-64x64">
@@ -88,7 +96,7 @@ class FilmSearchBar extends Component {
 
   render() {
     return (
-      <div className="container is-fluid">
+      <div className="is-fluid">
         <div className="field field_style">
           <div className="control">
             <input
@@ -101,7 +109,10 @@ class FilmSearchBar extends Component {
         </div>
 
         <section className="section is-paddingless">
-          <DropDown results={this.state.results} />
+          <DropDown
+            results={this.state.results}
+            addMovie={this.props.addMovie}
+          />
         </section>
       </div>
     );

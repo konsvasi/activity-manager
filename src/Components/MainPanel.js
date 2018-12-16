@@ -30,35 +30,7 @@ class MainPanel extends Component {
     console.log("searching", ev.target.value);
   };
 
-  DetailPanel = props => {
-    const { activityName, activityDate } = props.activeSession;
-    if (this.isEmptyObj(props.activeSession)) {
-      return (
-        <div>
-          <p className="title">No activities</p>
-          <div className="content">
-            <p>Create a new activity by clicking the "Add activity button"</p>
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <section className="section">
-        <p className="title">{activityName}</p>
-        <p className="subtitle">{activityDate.toLocaleString()}</p>
-
-        <div className="content">
-          <p>Insert activity details</p>
-          <FilmSearchBar />
-        </div>
-        <MovieVote />
-      </section>
-    );
-  };
-
   render() {
-    console.log("this.props.activeSession:", this.props.activeSession);
     return (
       <div className="tile-is-ancestor">
         <div className="tile">
