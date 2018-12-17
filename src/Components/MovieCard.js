@@ -1,17 +1,16 @@
 import React from "react";
+import "./MovieCard.css";
 
 const MovieCard = props => {
-  console.log("poster:", props.movie.Poster);
   return (
     <div className="card">
       <div className="card-image">
-        <figure className="image is 4by3">
-          <img src={props.movie.Poster} alt="Placeholder" />
+        <figure className="image poster">
+          <img src={props.movie.Poster} alt="Placeholder" className="poster" />
         </figure>
         <div className="card-content">
           <div className="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            nec iaculis mauris.
+            <p className="subtitle">{props.movie.Title}</p>
           </div>
         </div>
       </div>

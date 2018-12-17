@@ -50,9 +50,7 @@ class DetailPanel extends Component {
             </p>
             <div className="content">
               <p>Insert activity details</p>
-              <section className="section">
-                <MovieCardList moviesForVote={this.state.moviesForVote} />
-              </section>
+              <MovieCardList moviesForVote={this.state.moviesForVote} />
             </div>
           </div>
           <div className="column is-3 is-offset-1">
