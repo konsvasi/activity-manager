@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import AwesomeDebouncePromise from "awesome-debounce-promise";
 
-import "./FilmSearchBar.css";
+import "../css/FilmSearchBar.css";
 
 const searchApi = searchTerm =>
   axios.post(
@@ -35,7 +35,7 @@ const DropDown = props => {
         addMovie(index);
       }}
     >
-      <a className="dropdown-item" id={index}>
+      <a className="dropdown-item" href="#" id={index}>
         <article className="media">
           <figure className="media-left">
             <p className="image is-64x64">
@@ -55,7 +55,7 @@ const DropDown = props => {
   ));
 
   movies = props.results;
-  if (props.results.length == 0) {
+  if (props.results.length === 0) {
     return null;
   }
 
@@ -80,8 +80,6 @@ class FilmSearchBar extends Component {
   }
 
   handleInput = async ev => {
-    const value = ev.target.value;
-    const searchObj = { searchTerm: ev.target.value };
     const resultsBody = await searchApiDebounced(ev.target.value);
     const results = await resultsBody;
 

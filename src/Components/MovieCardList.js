@@ -4,7 +4,12 @@ import MovieCard from "./MovieCard";
 const MovieCardList = props => {
   const movieList = props.moviesForVote.map((movie, index) => (
     <div className="column is-one-third" key={index}>
-      <MovieCard movie={movie} />
+      <MovieCard
+        movie={movie}
+        voteMovie={() => {
+          props.voteMovie(movie);
+        }}
+      />
     </div>
   ));
 

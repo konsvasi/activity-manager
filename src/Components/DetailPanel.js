@@ -23,9 +23,14 @@ class DetailPanel extends Component {
 
   addMovie = movie => {
     console.log("add this movie", movie);
+    const movieWithVoteEntry = Object.assign({ votes: 1 }, movie);
     this.setState(prevState => ({
-      moviesForVote: [...prevState.moviesForVote, movie]
+      moviesForVote: [...prevState.moviesForVote, movieWithVoteEntry]
     }));
+  };
+
+  voteMovie = movie => {
+    console.log("Voted for this movie increase vote count by one", movie);
   };
 
   render() {
@@ -50,7 +55,10 @@ class DetailPanel extends Component {
             </p>
             <div className="content">
               <p>Insert activity details</p>
-              <MovieCardList moviesForVote={this.state.moviesForVote} />
+              <MovieCardList
+                moviesForVote={this.state.moviesForVote}
+                voteMovie={this.voteMovie}
+              />
             </div>
           </div>
           <div className="column is-3 is-offset-1">
