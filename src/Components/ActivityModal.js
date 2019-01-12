@@ -18,13 +18,13 @@ class ActivityModal extends Component {
     activityFriends: ""
   };
 
-  handleNameChange = ev => {
+  handleChange = ev => {
     ev.persist();
-    this.activity.activityName = ev.target.value;
-  };
-
-  handleDateChange = ev => {
-    this.activity.activityDate = new Date(ev.target.value);
+    const { name, value } = ev.target;
+    console.log(name, value);
+    const val = name === "activityDate" ? new Date(value) : value;
+    this.activity[name] = val;
+    console.log("activity1: ", this.activity);
   };
 
   // Clears the warning when input field has a value
@@ -62,6 +62,7 @@ class ActivityModal extends Component {
   // before actually calling the saveActivity function
   prepareSaveActivity = () => {
     const { activityName, activityDate } = this.activity;
+    console.log("activity2: ", this.activity);
     if (activityName !== "" && activityDate !== "") {
       this.activity.activityId = activityName;
       this.props.saveActivity(this.activity);
@@ -93,7 +94,7 @@ class ActivityModal extends Component {
                 <div className="control">
                   <NameField
                     isEmpty={this.state.nameFieldIsEmpty}
-                    handleNameChange={this.handleNameChange}
+                    onChange={this.handleChange}
                     clearWarning={this.clearWarning}
                   />
                 </div>
@@ -103,7 +104,7 @@ class ActivityModal extends Component {
                 <div className="control">
                   <Datepicker
                     isEmpty={this.state.dateFieldIsEmpty}
-                    onChange={this.handleDateChange}
+                    onChange={this.handleChange}
                     clearWarning={this.clearWarning}
                   />
                 </div>

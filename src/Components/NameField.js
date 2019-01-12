@@ -5,10 +5,11 @@ const NameField = props => {
 
   return (
     <input
+      name="activityName"
       className={styles}
       type="text"
       placeholder="Activity name"
-      onBlur={props.handleNameChange}
+      onBlur={props.onChange}
       onChange={props.clearWarning}
       required
     />
