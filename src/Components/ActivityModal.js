@@ -21,7 +21,6 @@ class ActivityModal extends Component {
   handleChange = ev => {
     ev.persist();
     const { name, value } = ev.target;
-    console.log(name, value);
     const val = name === "activityDate" ? new Date(value) : value;
     this.activity[name] = val;
     console.log("activity1: ", this.activity);
@@ -62,7 +61,6 @@ class ActivityModal extends Component {
   // before actually calling the saveActivity function
   prepareSaveActivity = () => {
     const { activityName, activityDate } = this.activity;
-    console.log("activity2: ", this.activity);
     if (activityName !== "" && activityDate !== "") {
       this.activity.activityId = activityName;
       this.props.saveActivity(this.activity);
