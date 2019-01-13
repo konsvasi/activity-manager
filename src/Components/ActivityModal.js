@@ -23,7 +23,6 @@ class ActivityModal extends Component {
     const { name, value } = ev.target;
     const val = name === "activityDate" ? new Date(value) : value;
     this.activity[name] = val;
-    console.log("activity1: ", this.activity);
   };
 
   // Clears the warning when input field has a value

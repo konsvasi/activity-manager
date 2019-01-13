@@ -22,7 +22,6 @@ class DetailPanel extends Component {
   }
 
   addMovie = movie => {
-    console.log("add this movie", movie);
     const movieWithVoteEntry = Object.assign({ votes: 1 }, movie);
     this.setState(prevState => ({
       moviesForVote: [...prevState.moviesForVote, movieWithVoteEntry]
@@ -39,7 +38,9 @@ class DetailPanel extends Component {
         <div>
           <p className="title">No activities</p>
           <div className="content">
-            <p>Create a new activity by clicking the "Add activity button"</p>
+            <p className="content-message">
+              Create a new activity by clicking the "Add activity button"
+            </p>
           </div>
         </div>
       );
