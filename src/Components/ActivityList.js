@@ -9,7 +9,7 @@ const ActivityList = props => {
   };
 
   const listOfActivities = activities.map((activity, index) => (
-    <li onClick={getActivityId} key={index}>
+    <li onClick={getActivityId} key={index} className="activity-item">
       <a id={activity.activityName}>{activity.activityName}</a>
     </li>
   ));
